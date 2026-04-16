@@ -12,8 +12,8 @@
 #include "AudioTools/Communication/HTTP/URLStream.h"
 #include "AudioTools/AudioCodecs/CodecFactory.h" // 包含所有支援的解碼器工廠
 
-const char* ssid     = "D-Link_DIR-612";
-const char* password = "27687425";
+const char* ssid     = "your wifi ssid";
+const char* password = "wifi password";
 const byte ROW[5] = {0, 15, 31, 47, 63};
 
 #define I2S_BCK  5
