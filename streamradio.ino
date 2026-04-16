@@ -275,13 +275,6 @@ void handleEdit() {
   server.send(200, "text/html; charset=utf-8", html);
 }
 
-void handlePlay() {
-  int id = server.pathArg(0).toInt();
-  Serial.printf("id=%d\n",id);
-  playRadio(id);
-  server.sendHeader("Location", "/");
-  server.send(302);
-}
 
 void handleStop() {
   stopRadio();
@@ -391,7 +384,6 @@ void setup() {
   server.on("/", HTTP_GET, handleRoot);
   server.on("/edit", HTTP_GET, handleEdit);
   server.on("/play/0", HTTP_GET, handleStop);
-//  server.on("/play/*", HTTP_GET, handlePlay);
   // 播放路由 (使用 /play?id=X)
   server.on("/play", HTTP_GET, []() {
     if (server.hasArg("id")) {
