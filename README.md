@@ -2,7 +2,7 @@
 <br>
 <b>2026.04.16 by Halin</b><br>
 <br>
-Stream audio by ESP32 c3 super mini<br>
+<h2></h2>Stream audio by ESP32 c3 super mini</h><br><br>
 使用ESP32 C3 super mini + Max98357a + SSD1306 I2C 128*64<br>
 解碼函式庫採用arduino-audio-tools-1.2.2<br>
 功能:<br>
