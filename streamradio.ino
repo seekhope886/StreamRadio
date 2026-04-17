@@ -441,8 +441,20 @@ void loop() {
 
     // 優先處理音訊搬運
     if (isPlaying) {
-        copier.copy();
+        size_t len = copier.copy();
+        
+        static unsigned long lastDataMillis = 0;
+        if (len > 0) {
+            lastDataMillis = millis(); // 只要有資料，就更新時間
+        } else {
+            // 如果超過 5 秒沒抓到新數據，強制重新連線
+            if (millis() - lastDataMillis > 10000) {
+                Serial.println("Stream timed out. Reconnecting...");
+                playRadio(radioData.current); 
+            }
+        }
     }
+
 
     // 每 5 次循環才處理一次 WebServer，減少對音訊的干擾
     static int webCount = 0;
