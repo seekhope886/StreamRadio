@@ -132,6 +132,11 @@ void saveRadios() {
 }
 
 void playRadio(int id) {
+    if(isPlaying){
+    urlStream.end();
+    decStream.end();
+    i2s.end(); // 徹底關閉 I2S
+    }
     isPlaying = false; 
     urlStream.end();
     delay(200);
@@ -185,6 +190,8 @@ void playRadio(int id) {
 
 void stopRadio() {
   urlStream.end();
+  decStream.end();
+  i2s.end(); // 徹底關閉 I2S
   isPlaying = false;
   streamStatus = "Stopped";
   updateDisplay();
@@ -206,6 +213,8 @@ void updateDisplay() {
   u8g2.setCursor(0, ROW[3]);
   u8g2.print(buf);
   
+  u8g2.setCursor(0, ROW[4]);
+  u8g2.print(WiFi.localIP().toString().c_str());
   u8g2.sendBuffer();
 }
 
