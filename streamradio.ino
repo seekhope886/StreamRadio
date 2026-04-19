@@ -53,6 +53,7 @@ struct RadioData {
 RadioData radioData;
 bool isPlaying = false;
 unsigned long lastDisplayUpdate = 0;
+unsigned long lastEQUpdate = 0;
 String currentStationName = "None";
 String streamStatus = "Stopped";
 
@@ -186,6 +187,30 @@ void playRadio(int id) {
     }
     updateDisplay();
 }
+void drawEQBars() {
+  unsigned long currentTime = millis();
+  int barWidth = 12;
+  int barSpacing = 4;
+  int maxHeight = 34;
+  int minHeight = 4;
+  int startX = 0;
+  int barY = 46;
+  
+  for (int i = 0; i < 8; i++) {
+    int height;
+    if (isPlaying) {
+      float phase = currentTime / 150.0 + i * 0.8;
+      float noise = random(-30, 30) / 100.0;
+      height = minHeight + (maxHeight - minHeight) * (0.4 + 0.3 * sin(phase) + 0.3 * noise + 0.2 * sin(phase * 2.3));
+    } else {
+      height = minHeight;
+    }
+    height = constrain(height, minHeight, maxHeight);
+    
+    int x = startX + i * (barWidth + barSpacing);
+    u8g2.drawBox(x, barY - height, barWidth - 1, height);
+  }
+}
 
 
 void stopRadio() {
@@ -204,14 +229,15 @@ void updateDisplay() {
   u8g2.print(currentStationName.c_str());
 //  u8g2.drawUTF8(0, 16, currentStationName.c_str());
   
+  drawEQBars();
 //  u8g2.setFont(u8g2_font_6x10_tr);
-  u8g2.setCursor(0, ROW[2]);
-  u8g2.print(streamStatus);
+//  u8g2.setCursor(0, ROW[2]);
+//  u8g2.print(streamStatus);
   
-  char buf[32];
-  snprintf(buf, sizeof(buf), "Station: %d/%d", radioData.current + 1, radioData.count);
-  u8g2.setCursor(0, ROW[3]);
-  u8g2.print(buf);
+//  char buf[32];
+//  snprintf(buf, sizeof(buf), "Station: %d/%d", radioData.current + 1, radioData.count);
+//  u8g2.setCursor(0, ROW[3]);
+//  u8g2.print(buf);
   
   u8g2.setCursor(0, ROW[4]);
   u8g2.print(WiFi.localIP().toString().c_str());
@@ -463,8 +489,8 @@ void loop() {
         webCount = 0;
     }
   
-  if (millis() - lastDisplayUpdate > 1000) {
-    lastDisplayUpdate = millis();
+  if (millis() - lastEQUpdate > 66) {
+    lastEQUpdate = millis();
     if (WiFi.status() == WL_CONNECTED) {
       updateDisplay();
     }
