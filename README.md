@@ -25,3 +25,4 @@ ESP32 C3 Super mini單核心且可用記憶體很少,使用在解碼串流很吃
          alt="Stream audio" 
          width="50%" height="auto">
 </a>
+[![Watch the video](http://youtube.com)](https://youtube.com/shorts/peeemmVe75Y)
