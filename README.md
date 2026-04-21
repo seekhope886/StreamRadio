@@ -5,7 +5,7 @@
 <size=2></h2>(超實用)Stream audio by ESP32 c3 super mini(必安裝)<size=1><br>
 <br>
 使用ESP32 C3 super mini + Max98357a + SSD1306 I2C 128*64<br>
-解碼函式庫採用arduino-audio-tools-1.2.2<br>
+解碼函式庫採用arduino-audio-tools-1.2.2(須安裝)<br>
 功能:<br>
   1.從web server設定電台並操作新增刪除編輯播放停止<br>
   2.電台串流格式支援MP3以及AAC兩種<br>
