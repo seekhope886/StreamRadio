@@ -20,3 +20,8 @@ ESP32 C3 Super mini單核心且可用記憶體很少,使用在解碼串流很吃
 如果要再增加不同格式串流須要特別注意heap的使用狀況<br>
 <b>下載記得一定要給星..^.^..</b><br>
 ***************************************************************<br>
+<a href="https://youtube.com/shorts/peeemmVe75Y" target="_blank">
+    <img src="https://youtube.com/shorts/peeemmVe75Y/0.jpg" 
+         alt="Stream audio" 
+         width="50%" height="auto">
+</a>
