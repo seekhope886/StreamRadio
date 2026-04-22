@@ -12,7 +12,7 @@
  * 
 */
 //#define use_def_pwd //使用自定義SSID password
-#define serialDSP
+//#define serialDSP
 #include <Wire.h>
 #include <WiFi.h>
 #include <SPIFFS.h>
@@ -29,10 +29,6 @@
 #include "AudioTools/AudioCodecs/CodecAACHelix.h" // 確保有包含 AAC Helix
 #include "AudioTools/Communication/HTTP/URLStream.h"
 #include "AudioTools/AudioCodecs/CodecFactory.h" // 包含所有支援的解碼器工廠
-#ifdef use_def_pwd
-const char* ssid     = "D-Link_DIR-612";
-const char* password = "27687425";
-#endif
 
 const char* RB_HOST = "http://de1.api.radio-browser.info";
 
