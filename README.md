@@ -26,3 +26,7 @@ ESP32 C3 Super mini單核心且可用記憶體很少,使用在解碼串流很吃
          width="50%" height="auto">
 </a>
 [![Watch the video](http://youtube.com)](https://youtube.com/shorts/peeemmVe75Y)
+<br>
+<b>2026.04.22 Version 2.0</b><br>
+<br>
+ Search internet radio url from de1.api.radio-browser.info<br>
