@@ -31,6 +31,8 @@
 #include "AudioTools/AudioCodecs/CodecFactory.h" // 包含所有支援的解碼器工廠
 
 const char* RB_HOST = "http://de1.api.radio-browser.info";
+const char* ssid     = "your wifi ssid";
+const char* password = "wifi password";
 
 struct CountryEntry {
   const char* code;
