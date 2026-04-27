@@ -132,7 +132,7 @@ unsigned long lastDisplayUpdate = 0;
 unsigned long lastEQUpdate = 0;
 String currentStationName = "None";
 String streamStatus = "Stopped";
-float currentVolume = 0.9;
+float currentVolume = 0.7;
 String tmpurl = "";
 
 void initFS() {
@@ -202,7 +202,13 @@ void loadRadios() {
     }
   JsonArray radios = doc["radios"];
   radioData.count = radios.size();
-  radioData.current = doc["current"] | 0;
+//改為開機後隨機選取播放  
+if (radioData.count > 0) {
+  radioData.current = random(0, radioData.count); 
+} else {
+  radioData.current = 0;
+}  
+//  radioData.current = doc["current"] | 0;  
   
   for (int i = 0; i < radioData.count && i < 10; i++) {
     radioData.radios[i].id = radios[i]["id"];
@@ -821,7 +827,7 @@ void startSmartConfig() {
 void setup() {
   delay(500);
   Serial.begin(115200);
-  randomSeed(millis());
+  randomSeed(analogRead(0));
   
   initFS();
   listSPIFFSFiles();  //列出SPIFFS裡的檔案有哪一些
@@ -872,7 +878,7 @@ void setup() {
   i2s.begin(config);
   
   volume.begin(config);
-  volume.setVolume(0.9);
+  volume.setVolume(currentVolume);
 //  reducer.begin(config);
   
   decStream.begin();
